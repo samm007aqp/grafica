@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block content %}
+
+		<div class ="row">
+			<div class="col">
+				<h1> Seleccione una Image </h1>
+				<hr>
+				<form action="/upload-image" method="POST" enctype="multipart/form-data">
+				<div class="form-group">
+		          <label>Select image</label>
+		          <div class="custom-file">
+		            <input type="file" class="custom-file-input" name="image" id="image">
+		            <label class="custom-file-label" for="image">Select image...</label>
+		          </div>
+		        </div>
+		        <button type="submit"  class ="btn btn-primary">Upload Image</button> 	{{filename}}
+		        </form>
+			</div>
+		</div>
+
+		{% if filename %}
+			<div>
+				<h2> Imagen Subida</h2>
+				<img src="{{url_for('display_image',filename=filename)}}">
+			<div/>
+		{% else %}
+			<div>
+				<h2> Empty </h2>
+			<div/>
+		{% endif %}
+{% endblock %}
+
+
+{% block input_image %}
+
+		<div class ="row">
+			<div class="col">
+				<form action="/expo-link">
+					<button type="submit" class ="btn btn-primary">Expo</button>   
+				</form>
+			</div>
+		</div>
+		{% if salida %}
+			<div>
+				<h2> Imagen Salida</h2>
+		<!--<img src="{{url_for('send_image',filename=salida)}}">-->
+		<img src="{{url_for('display_image',filename=salida)}}">
+		<!--<img src="{{url_for('static',filename='images/upload/ salida.jpg')}}"> -->
+			<div/>
+		{% else %}
+			<div>
+				<h3> Esperando Algoritmo </h3>
+			<div/>
+		{% endif %}
+{% endblock %}
+
+
+
+
+
